@@ -1,6 +1,6 @@
 # SonarQube Helm Chart
 
-Helm-чарт для развертывания SonarQube + PostgreSQL на Kubernetes (Minikube и др.)
+Helm-чарт для развертывания SonarQube + PostgreSQL от bitnami как сабчарт  на Kubernetes (Minikube и др.)
 ## Установка
 
 ### 1. Клонировать репозиторий
