@@ -1,0 +1,41 @@
+image:
+  repository: sonarqube
+  pullPolicy: IfNotPresent
+  tag: 9.9.0-community
+
+serviceAccount:
+  create: false
+
+service:
+  type: ClusterIP
+  port: 9000
+
+volumes:
+  - name: sonarqube-data
+    emptyDir: {}
+  - name: sonarqube-logs
+    emptyDir: {}
+  - name: sonarqube-extensions
+    emptyDir: {}
+
+volumeMounts:
+  - name: sonarqube-data
+    mountPath: /opt/sonarqube/data
+  - name: sonarqube-logs
+    mountPath: /opt/sonarqube/logs
+  - name: sonarqube-extensions
+    mountPath: /opt/sonarqube/extensions
+
+postgresql:
+  enabled: true
+  auth:
+    username: sonar
+    database: sonarqube
+    existingSecret: sonar-postgres-secret 
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+      storageClass: ""  
+
+
